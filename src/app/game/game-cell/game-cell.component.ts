@@ -8,11 +8,16 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GameCellComponent implements OnInit {
   @Input() row: number;
   @Input() col: number;
+  point: {'x': number, 'y': number};
 
   constructor() { }
 
   ngOnInit() {
-    console.log('This cell\'s coords are: (' + this.row + ':' + this.col + ')');
+    this.point = {'x': this.row, 'y': this.col};
+    console.log('This cell\'s coords are: (' + this.row + ':' + this.col + ')\nIt has been recorded as: '
+      + this.pointForm());
   }
-
+  pointForm(){
+    return '(' + this.point.x + ',' + this.point.y + ')';
+  }
 }
