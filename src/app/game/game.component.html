@@ -1,0 +1,7 @@
+<div id="gameBoard" class="row">
+  <div class="col-xs-12" >
+    <div class="game-row" *ngFor="let row of height">
+      <app-game-cell [row]="row" [col]="col" *ngFor="let col of width"></app-game-cell>
+    </div>
+  </div>
+</div>
