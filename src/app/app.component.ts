@@ -11,13 +11,16 @@ export class AppComponent implements OnInit{
 
   width = 10;
   height = 5;
+  basis = 100; // aka, what is a single unit of motion worth?
   counter = 0;
   face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
   oldFace = this.face;
-  start = {'x': 1, 'y': 1}; // farthest west and south
-  oldPos = this.start;
-  pos = {'x': 1, 'y': 1};
+  start = {'x': 1 * this.basis , 'y': 1 * this.basis}; // farthest west and south
+  pos = this.start;
+  oldPos = {'x': 1, 'y': 1};
   moveArr = ['f', 'l', 'b', 'b', 'r', 'f'];
+
+
 
   ngOnInit(){
     this.play();
@@ -27,10 +30,10 @@ export class AppComponent implements OnInit{
     const move = this.moveArr.pop();
     switch(move){
       case 'f':
-        this.move(this.face, 1);
+        this.move(this.face, 1 * this.basis );
         break;
       case 'b':
-        this.move(this.face, -1);
+        this.move(this.face, -1 * this.basis );
         break;
       case 'l':
         this.face = (this.face - 1 ) % 4;
