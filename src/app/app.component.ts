@@ -9,9 +9,10 @@ import 'rxjs/Rx';
 export class AppComponent implements OnInit{
   title = 'the game';
 
-  width = 10;
-  height = 5;
+
   basis = 100; // aka, what is a single unit of motion worth?
+  width = 10 * this.basis;
+  height = 5 * this.basis;
   counter = 0;
   face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
   oldFace = this.face;
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit{
         this.move(this.face, -1 * this.basis );
         break;
       case 'l':
-        this.face = (this.face - 1 ) % 4;
+        this.face = (this.face - 1 ) % 4; 
         this.face = this.face * (this.face < 0 ? -1 : 1); // just in case
         break;
       case 'r':
