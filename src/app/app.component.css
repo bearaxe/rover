@@ -1,3 +1,11 @@
 app-rover{
   position: absolute;
+  background: #000;
+  transition: 1s ease-in-out;
+}
+
+.bounds{
+  border: 1px solid green;
+  position: relative;
+  margin: 0 auto;
 }

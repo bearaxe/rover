@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   counter = 0;
   face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
   oldFace = this.face;
-  start = {'x': 0 , 'y': 0}; // farthest west and south (unfortunately this is actually the farthest east and north lol)
+  start = {'x': 0 , 'y': 0}; // farthest west and south (unfortunately this is actually the farthest west and north lol)
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
   moveArr = ['f', 'r', 'b', 'r', 'b', 'l', 'f', 'b', 'f', 'r', 'l', 'f', 'f', 'f', 'r', 'f', 'f', 'f', 'f', 'f', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'f', 'f', 'f'];
