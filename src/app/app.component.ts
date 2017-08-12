@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit{
   basis = 100; // aka, what is a single unit of motion worth?
   width = 10 * this.basis;
   height = 5 * this.basis;
+  isPlaying = false;
 
   counter = 0;
   face = 3; // 1 is n, 2 is e, 3 is s, 0 is w
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit{
   oldPos = {'x': 0, 'y': 0};
   moveArr = ['f', 'l', 'f', 'r', 'b', 'l', 'l', 'b'];
   dbLog = [];
+  newMoves: string = '';
 
   constructor(private sanitizer: DomSanitizer) { }
 
@@ -34,6 +37,7 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     console.log('moveArr lenght:', this.moveArr.length);
     this.moveArr = this.moveArr.reverse();
+    this.isPlaying = true;
     setTimeout(()=>{this.play()},1000);
     console.log('moves in reverse:', this.dbLog);
   }
@@ -71,6 +75,7 @@ export class AppComponent implements OnInit{
       if(this.moveArr.length > 0){
         this.play()
       } else {
+        this.isPlaying = false;
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
         console.log("that's all for now! :)")
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
@@ -111,6 +116,17 @@ export class AppComponent implements OnInit{
       return (destination <= this.height && destination >= 0? destination : this.pos.y);
     }
     // return destination;
+  }
+
+  addMoves(form: NgForm){
+    const nArr = form.value.newMoves.split(',');
+    for(const each of nArr){
+      this.moveArr.unshift(each)
+    }
+    if(this.isPlaying !== true){
+      this.isPlaying = true;
+      this.play();
+    }
   }
 
   logStatus(lastMove){

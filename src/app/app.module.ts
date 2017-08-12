@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RoverComponent } from './rover/rover.component';
@@ -15,7 +16,8 @@ import { GameCellComponent } from './game/game-cell/game-cell.component';
     GameCellComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [GameEngineService],
   bootstrap: [AppComponent]
