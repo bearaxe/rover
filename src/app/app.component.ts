@@ -9,19 +9,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent implements OnInit{
   title = 'the game';
+  //RULE OF GOD: NORTH IS MINUS, WEST IS MINUS. EXTREAM (0,0) IS (WEST, NORTH)
+  //LEAVE THE ROVER POINTING SOUTH AT START (unless you randomize this later, but for now, SOUTH)
 
 
   basis = 100; // aka, what is a single unit of motion worth?
   width = 10 * this.basis;
   height = 5 * this.basis;
-  rotation = 180;
+
   counter = 0;
-  face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
+  face = 3; // 1 is n, 2 is e, 3 is s, 0 is w
+  rotation = 0; //set this in a different init funciton or something so safeTransform doesn't get borked to heck
   oldFace = this.face;
-  start = {'x': 0 , 'y': 0}; // farthest west and south (unfortunately this is actually the farthest west and north lol)
+  start = {'x': 0 , 'y': 0};
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
-  moveArr = ['f'];
+  moveArr = ['f', 'l', 'f', 'r', 'b', 'l', 'l', 'b'];
   dbLog = [];
 
   constructor(private sanitizer: DomSanitizer) { }
@@ -46,7 +49,7 @@ export class AppComponent implements OnInit{
         break;
       case 'l':
         this.face = (this.face - 1 ) % 4;
-        this.face = this.face * (this.face < 0 ? -1 : 1); // just in case
+        this.face = this.face * (this.face < 0 ? -1 : 1);
         this.rotate(-90);
         break;
       case 'r':
@@ -81,13 +84,13 @@ export class AppComponent implements OnInit{
         this.pos.x = this.checkMove(this.pos.x - motion, 'x');
         break;
       case 1: // n
-        this.pos.y = this.checkMove(this.pos.y + motion, 'y');
+        this.pos.y = this.checkMove(this.pos.y - motion, 'y');
         break;
       case 2: // e
         this.pos.x = this.checkMove(this.pos.x + motion, 'x');
         break;
       case 3: // s
-        this.pos.y = this.checkMove(this.pos.y - motion, 'y');
+        this.pos.y = this.checkMove(this.pos.y + motion, 'y');
         break;
       default:
         console.log('this direction is impossible. your mod is bad, it gave me: ', face);
