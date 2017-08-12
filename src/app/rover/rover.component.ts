@@ -9,8 +9,10 @@ export class RoverComponent implements OnInit, OnChanges {
   @Input() size;
   @Input() x;
   @Input() y;
+  @Input() rotation;
 
-  constructor() { }
+
+
 
   ngOnChanges() {
     console.log('ayy found somethin')

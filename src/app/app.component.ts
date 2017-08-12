@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +14,24 @@ export class AppComponent implements OnInit{
   basis = 100; // aka, what is a single unit of motion worth?
   width = 10 * this.basis;
   height = 5 * this.basis;
+  rotation = 180;
   counter = 0;
   face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
   oldFace = this.face;
   start = {'x': 0 , 'y': 0}; // farthest west and south (unfortunately this is actually the farthest west and north lol)
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
-  moveArr = ['f', 'r', 'b', 'r', 'b', 'l', 'f', 'b', 'f', 'r', 'l', 'f', 'f', 'f', 'r', 'f', 'f', 'f', 'f', 'f', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'f', 'f', 'f'];
+  moveArr = ['f'];
   dbLog = [];
 
+  constructor(private sanitizer: DomSanitizer) { }
 
+  safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + this.rotation + "deg)");
 
   ngOnInit(){
     console.log('moveArr lenght:', this.moveArr.length);
     this.moveArr = this.moveArr.reverse();
-    this.play();
+    setTimeout(()=>{this.play()},1000);
     console.log('moves in reverse:', this.dbLog);
   }
 
@@ -43,9 +47,11 @@ export class AppComponent implements OnInit{
       case 'l':
         this.face = (this.face - 1 ) % 4;
         this.face = this.face * (this.face < 0 ? -1 : 1); // just in case
+        this.rotate(-90);
         break;
       case 'r':
         this.face = (this.face + 1 ) % 4;
+        this.rotate(90);
         break;
       default:
         console.log('your array value ' + move + 'is invalid');
@@ -66,7 +72,7 @@ export class AppComponent implements OnInit{
         console.log("that's all for now! :)")
         console.log("~~~~~~~~~~~~~~~~~~~~~~")
       }
-    }, 500);
+    }, 1000);
   }
 
   move(face, motion){
@@ -86,6 +92,11 @@ export class AppComponent implements OnInit{
       default:
         console.log('this direction is impossible. your mod is bad, it gave me: ', face);
     }
+  }
+
+  rotate(rotation){
+    this.rotation += rotation;
+    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + this.rotation + "deg)");
   }
 
   checkMove(destination, key){

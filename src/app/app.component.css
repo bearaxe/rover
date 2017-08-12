@@ -1,6 +1,6 @@
 app-rover{
   position: absolute;
-  background: #000;
+  background: yellow;
   transition: 1s ease-in-out;
 }
 

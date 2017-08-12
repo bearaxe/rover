@@ -5,6 +5,7 @@
   </h1>
 </div>
 <div class="bounds" [style.width]='width + "px"' [style.height]='height+basis + "px"'>
-<app-rover [style.width]='basis + "px"' [style.height]='basis + "px"'
-            [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'></app-rover>
+<app-rover [rotation]='facedeg' [style.width]='basis + "px"' [style.height]='basis + "px"'
+            [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'
+             [style.transform]="safeTransform"></app-rover>
 </div>
