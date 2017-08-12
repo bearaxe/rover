@@ -16,15 +16,19 @@ export class AppComponent implements OnInit{
   counter = 0;
   face = 1; // 1 is n, 2 is e, 3 is s, 0 is w
   oldFace = this.face;
-  start = {'x': 1 * this.basis , 'y': 1 * this.basis}; // farthest west and south
+  start = {'x': 0 , 'y': 0}; // farthest west and south
   pos = this.start;
-  oldPos = {'x': 1, 'y': 1};
-  moveArr = ['f', 'l', 'b', 'b', 'r', 'f'];
+  oldPos = {'x': 0, 'y': 0};
+  moveArr = ['f', 'r', 'b', 'r', 'b', 'l', 'f', 'b', 'f', 'r', 'l', 'f', 'f', 'f', 'r', 'f', 'f', 'f', 'f', 'f', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'f', 'f', 'f'];
+  dbLog = [];
 
 
 
   ngOnInit(){
+    console.log('moveArr lenght:', this.moveArr.length);
+    this.moveArr = this.moveArr.reverse();
     this.play();
+    console.log('moves in reverse:', this.dbLog);
   }
 
   play(){
@@ -37,7 +41,7 @@ export class AppComponent implements OnInit{
         this.move(this.face, -1 * this.basis );
         break;
       case 'l':
-        this.face = (this.face - 1 ) % 4; 
+        this.face = (this.face - 1 ) % 4;
         this.face = this.face * (this.face < 0 ? -1 : 1); // just in case
         break;
       case 'r':
@@ -47,34 +51,52 @@ export class AppComponent implements OnInit{
         console.log('your array value ' + move + 'is invalid');
     }
     this.logStatus(move);
+    this.dbLog.push(move);
     // move to own function?
     this.oldPos.x = this.pos.x;
     this.oldPos.y = this.pos.y;
     this.oldFace = this.face;
 
     // check for end of game
-    if(this.moveArr.length > 0){
-      this.play();
-    }
+    setTimeout(()=>{
+      if(this.moveArr.length > 0){
+        this.play()
+      } else {
+        console.log("~~~~~~~~~~~~~~~~~~~~~~")
+        console.log("that's all for now! :)")
+        console.log("~~~~~~~~~~~~~~~~~~~~~~")
+      }
+    }, 100);
   }
 
   move(face, motion){
     switch(face){
       case 0: // w
-        this.pos.x = this.pos.x - motion;
+        this.pos.x = this.checkMove(this.pos.x - motion, 'x');
         break;
       case 1: // n
-        this.pos.y = this.pos.y + motion;
+        this.pos.y = this.checkMove(this.pos.y + motion, 'y');
         break;
       case 2: // e
-        this.pos.x = this.pos.x + motion;
+        this.pos.x = this.checkMove(this.pos.x + motion, 'x');
         break;
-      case 4: // s
-        this.pos.y = this.pos.y - motion;
+      case 3: // s
+        this.pos.y = this.checkMove(this.pos.y - motion, 'y');
         break;
       default:
         console.log('this direction is impossible. your mod is bad, it gave me: ', face);
     }
+  }
+
+  checkMove(destination, key){
+    if(key === 'x'){
+      console.log("returning: ", (destination <= this.width && destination >= 0? destination : this.pos.x))
+      return (destination <= this.width && destination >= 0? destination : this.pos.x);
+    } else {
+      console.log("returning: ", (destination <= this.height && destination >= 0? destination : this.pos.y))
+      return (destination <= this.height && destination >= 0? destination : this.pos.y);
+    }
+    // return destination;
   }
 
   logStatus(lastMove){
