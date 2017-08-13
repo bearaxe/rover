@@ -1,18 +1,25 @@
 #moveForm{
-  max-width: 480px;
+  max-width: 960px;
   margin: 0 auto 15px;
 }
-form {
+#moveForm > * {
+  margin: initial auto;
+}
+
+
+form#listForm {
+  margin: 0 auto;
   width: 70%;
 }
-form .btn,
-form input{
+form#listForm .btn,
+form#listForm input{
   display: block;
   width: 100%;
 }
 
 .dpad{
-  width: 22%;
+  width: 100%;
+  max-width: 106px;
   margin: 2% auto;
 }
 #f,#b{
@@ -21,4 +28,14 @@ form input{
 }
 .btn{
   width: 35px;
+}
+
+.keypad{
+  width: 100%;
+  max-width: 565px;
+  margin: 0 auto;
+}
+.keypad .form-check-inline{
+  display: inline-block;
+  margin-right: 2px;
 }

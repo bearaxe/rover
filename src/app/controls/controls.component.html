@@ -1,19 +1,52 @@
 <div id="moveForm">
-  <form #f="ngForm" class="pull-left">
-    <div class="form-group">
-      <label>Put comma separated moves here and hit go!</label>
-      <input type="text" class="form-control"
-       name="newMoves" [(ngModel)]="newMoves"
-       placeholder="must be in form: l,f,b,r">
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="keypad">
+        <form #k="ngForm">
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="keytype" value="wasd"
+              (click)="key.changeInputType('wasd')" [(ngModel)]="keytype">
+              WASD
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="keytype" value="ijkl"
+              (click)="key.changeInputType('ijkl')" [(ngModel)]="keytype">
+              IJKL
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="keytype" value="akeys"
+              (click)="key.changeInputType('akey')" [(ngModel)]="keytype">
+              Arrow Keys
+            </label>
+          </div>
+        </form>
+      </div>
     </div>
-    <button class="btn btn-success" (click)="addMoves(f)">Go!</button>
-  </form>
-  <div class="dpad pull-right">
-    <button id="f" class="btn btn-primary" (click)="addMove('f')">f</button>
-    <button id="l" class="btn btn-primary pull-left" (click)="addMove('l')">l</button>
-    <button id="r" class="btn btn-primary pull-right" (click)="addMove('r')">r</button>
-    <div class="clearfix"></div>
-    <button id="b" class="btn btn-primary" (click)="addMove('b')">b</button>
+    <div class="col-xs-12 col-md-6">
+      <form id="listForm" #f="ngForm" class="">
+        <div class="form-group">
+          <label>Put comma separated moves here and hit go!</label>
+          <input type="text" class="form-control"
+           name="newMoves" [(ngModel)]="newMoves"
+           placeholder="must be in form: l,f,b,r">
+        </div>
+        <button class="btn btn-success" (click)="addMoves(f)">Go!</button>
+      </form>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="dpad">
+        <button id="f" class="btn btn-primary" (click)="addMove('f')">f</button>
+        <button id="l" class="btn btn-primary pull-left" (click)="addMove('l')">l</button>
+        <button id="r" class="btn btn-primary pull-right" (click)="addMove('r')">r</button>
+        <div class="clearfix"></div>
+        <button id="b" class="btn btn-primary" (click)="addMove('b')">b</button>
+      </div>
+    </div>
   </div>
-  <div class="clearfix"></div>
+    <div class="clearfix"></div>
 </div>

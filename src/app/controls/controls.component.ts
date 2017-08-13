@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BridgeService } from '../bridge.service';
 import { NgForm } from '@angular/forms';
+import { KeyHandlerService } from '../key-handler.service';
 
 @Component({
   selector: 'app-controls',
@@ -8,8 +9,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent implements OnInit {
+  keytype = 'wasd';
 
-  constructor(private bridge: BridgeService) { }
+  constructor(private bridge: BridgeService,
+              private key: KeyHandlerService) { }
 
   ngOnInit() {
   }

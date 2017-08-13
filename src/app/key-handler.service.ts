@@ -11,4 +11,8 @@ export class KeyHandlerService {
 
   }
 
+  changeInputType(newType){
+    console.log('newType is:', newType);
+  }
+
 }
