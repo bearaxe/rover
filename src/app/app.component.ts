@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NgForm } from '@angular/forms';
 import { BridgeService } from './bridge.service';
 import { Subject } from 'rxjs';
+import { KeyHandlerService } from './key-handler.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit{
   // rotSubj = new Subject<number>();
 
   constructor(private sanitizer: DomSanitizer,
-              private bridge: BridgeService) {
+              private bridge: BridgeService,
+              private key: KeyHandlerService) {
                 this.bridge.rotSubj.subscribe(
                   (rotation: number) => {
                     this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + rotation + "deg)");

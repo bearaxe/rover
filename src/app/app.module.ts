@@ -9,6 +9,7 @@ import { GameEngineService } from './game/game-engine.service';
 import { GameCellComponent } from './game/game-cell/game-cell.component';
 import { ControlsComponent } from './controls/controls.component';
 import { BridgeService } from './bridge.service';
+import { KeyHandlerService } from './key-handler.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BridgeService } from './bridge.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [GameEngineService, BridgeService],
+  providers: [GameEngineService, BridgeService, KeyHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
