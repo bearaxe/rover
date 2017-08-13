@@ -1,15 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div (window:keydown)="key.handle($event)">
+<div id="content" (window:keydown)="key.handle($event)">
   <div style="text-align:center">
     <h1>
       It's the rover game!
     </h1>
   </div>
   <app-controls></app-controls>
-  <div class="bounds" [style.width]='width+basis + "px"' [style.height]='height+basis + "px"'>
-    <app-rover [style.width]='basis + "px"' [style.height]='basis + "px"'
-               [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'
-               [style.transform]="safeTransform">
-    </app-rover>
+  <div class="buffer" [style.padding]="offset + 'px'" [style.width]="width+basis+(offset*2) + 'px'">
+    <div class="bounds" [style.width]='width+basis + "px"' [style.height]='height+basis + "px"'>
+      <app-rover [style.width]='basis + "px"' [style.height]='basis + "px"'
+                 [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'
+                 [style.transform]="safeTransform">
+      </app-rover>
+    </div>
   </div>
 </div>

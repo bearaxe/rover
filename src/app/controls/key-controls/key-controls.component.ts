@@ -8,7 +8,7 @@ import { KeyHandlerService } from '../../key-handler.service';
   styleUrls: ['./key-controls.component.css']
 })
 export class KeyControlsComponent implements OnInit {
-  keytype = 'wasd';
+  keytype = 'akey';
 
   constructor(private key: KeyHandlerService) { }
 
