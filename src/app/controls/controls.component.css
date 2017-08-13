@@ -39,3 +39,7 @@ form#listForm input{
   display: inline-block;
   margin-right: 2px;
 }
+
+.keypad img{
+  max-width: 100%;
+}
