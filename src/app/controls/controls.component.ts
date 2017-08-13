@@ -15,6 +15,7 @@ export class ControlsComponent implements OnInit {
               private key: KeyHandlerService) { }
 
   ngOnInit() {
+    this.key.setKeyType(this.keytype);
   }
 
   addMoves(form: NgForm){

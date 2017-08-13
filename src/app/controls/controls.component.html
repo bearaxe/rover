@@ -6,21 +6,21 @@
           <div class="form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="keytype" value="wasd"
-              (click)="key.changeInputType('wasd')" [(ngModel)]="keytype">
+              (click)="key.setKeyType('wasd')" [(ngModel)]="keytype">
               WASD
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="keytype" value="ijkl"
-              (click)="key.changeInputType('ijkl')" [(ngModel)]="keytype">
+              (click)="key.setKeyType('ijkl')" [(ngModel)]="keytype">
               IJKL
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="keytype" value="akeys"
-              (click)="key.changeInputType('akey')" [(ngModel)]="keytype">
+              (click)="key.setKeyType('akey')" [(ngModel)]="keytype">
               Arrow Keys
             </label>
           </div>
