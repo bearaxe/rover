@@ -106,8 +106,8 @@ export class BridgeService {
     // return destination;
   }
 
-  addMoves(move){
-    console.log('this is a stub for addMoves(move):', move);
+  addMove(move){
+    this.moveArr.unshift(move);
   }
 
   logStatus(lastMove){

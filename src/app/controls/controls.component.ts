@@ -17,7 +17,7 @@ export class ControlsComponent implements OnInit {
   addMoves(form: NgForm){
     const nArr = form.value.newMoves.split(',');
     for(const each of nArr){
-      this.bridge.moveArr.unshift(each)
+      this.bridge.addMove(each);
     }
     if(this.bridge.isPlaying !== true){
       this.bridge.isPlaying = true;
