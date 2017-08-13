@@ -1,34 +1,7 @@
 <div id="moveForm">
   <div class="row">
     <div class="col-xs-12 col-md-3">
-      <div class="keypad">
-        <form #k="ngForm">
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="keytype" value="wasd"
-              (click)="key.setKeyType('wasd')" [(ngModel)]="keytype">
-              WASD
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="keytype" value="ijkl"
-              (click)="key.setKeyType('ijkl')" [(ngModel)]="keytype">
-              IJKL
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="keytype" value="akey"
-              (click)="key.setKeyType('akey')" [(ngModel)]="keytype">
-              Arrow Keys
-            </label>
-          </div>
-        </form>
-        <div>
-          <img [src]="'../../assets/' + keytype + '.png'" />
-        </div>
-      </div>
+      <app-key-controls></app-key-controls>
     </div>
     <div class="col-xs-12 col-md-6">
       <form id="listForm" #f="ngForm" class="">
@@ -43,11 +16,11 @@
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="dpad">
-        <button id="f" class="btn btn-primary" (click)="addMove('f')">f</button>
-        <button id="l" class="btn btn-primary pull-left" (click)="addMove('l')">l</button>
-        <button id="r" class="btn btn-primary pull-right" (click)="addMove('r')">r</button>
+        <button id="f" class="btn btn-primary" (click)="bridge.addInput('f')">f</button>
+        <button id="l" class="btn btn-primary pull-left" (click)="bridge.addInput('l')">l</button>
+        <button id="r" class="btn btn-primary pull-right" (click)="bridge.addInput('r')">r</button>
         <div class="clearfix"></div>
-        <button id="b" class="btn btn-primary" (click)="addMove('b')">b</button>
+        <button id="b" class="btn btn-primary" (click)="bridge.addInput('b')">b</button>
       </div>
     </div>
   </div>

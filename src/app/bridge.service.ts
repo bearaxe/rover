@@ -9,6 +9,8 @@ export class BridgeService {
   width = 9 * this.basis;
   height = 5 * this.basis;
   isPlaying = false;
+  inputLimit = 3;
+  inputCount = 0;
 
   counter = 0;
   face = 3; // 1 is n, 2 is e, 3 is s, 0 is w
@@ -47,6 +49,9 @@ export class BridgeService {
       default:
         console.log('your array value ' + move + 'is invalid');
     }
+    this.inputCount = (--this.inputCount >= 0? this.inputCount : 0);
+    console.log('inputCount--:', this.inputCount)
+
     this.logStatus(move);
     this.dbLog.push(move);
     // move to own function?
@@ -100,6 +105,21 @@ export class BridgeService {
       return (destination <= this.height && destination >= 0? destination : this.pos.y);
     }
     // return destination;
+  }
+
+  // this is a user input funcation and needs to be limited accordingly
+  // user should be allowed up to 3 seconds of built up movement
+  // but user should also get feedback to show their input has been recorded
+  addInput(move){
+    if(this.inputLimit > this.inputCount){
+      this.inputCount++;
+      console.log('inputCount++:', this.inputCount)
+      this.moveArr.unshift(move);
+      if(this.isPlaying !== true){
+        this.isPlaying = true;
+        this.play();
+      }
+    }
   }
 
   addMove(move){

@@ -29,17 +29,3 @@ form#listForm input{
 .btn{
   width: 35px;
 }
-
-.keypad{
-  width: 100%;
-  max-width: 565px;
-  margin: 0 auto;
-}
-.keypad .form-check-inline{
-  display: inline-block;
-  margin-right: 2px;
-}
-
-.keypad img{
-  max-width: 100%;
-}

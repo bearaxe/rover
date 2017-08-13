@@ -20,13 +20,13 @@ export class KeyHandlerService {
 
       console.log('test:', this.up[this.set] === key)
       if(this.up[this.set] === key){
-        this.bridge.addMove('f');
+        this.bridge.addInput('f');
       } else if(this.left[this.set] === key){
-        this.bridge.addMove('l');
+        this.bridge.addInput('l');
       } else if(this.right[this.set] === key){
-        this.bridge.addMove('r');
+        this.bridge.addInput('r');
       } else if(this.down[this.set] === key){
-        this.bridge.addMove('b');
+        this.bridge.addInput('b');
       } else {
         console.log('not valid input :(');
       }

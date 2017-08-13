@@ -10,6 +10,7 @@ import { GameCellComponent } from './game/game-cell/game-cell.component';
 import { ControlsComponent } from './controls/controls.component';
 import { BridgeService } from './bridge.service';
 import { KeyHandlerService } from './key-handler.service';
+import { KeyControlsComponent } from './controls/key-controls/key-controls.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { KeyHandlerService } from './key-handler.service';
     RoverComponent,
     GameComponent,
     GameCellComponent,
-    ControlsComponent
+    ControlsComponent,
+    KeyControlsComponent
   ],
   imports: [
     BrowserModule,

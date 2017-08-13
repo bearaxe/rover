@@ -1,0 +1,28 @@
+<div class="keypad">
+  <form #k="ngForm">
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="keytype" value="wasd"
+        (click)="key.setKeyType('wasd')" [(ngModel)]="keytype">
+        WASD
+      </label>
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="keytype" value="ijkl"
+        (click)="key.setKeyType('ijkl')" [(ngModel)]="keytype">
+        IJKL
+      </label>
+    </div>
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="keytype" value="akey"
+        (click)="key.setKeyType('akey')" [(ngModel)]="keytype">
+        Arrow Keys
+      </label>
+    </div>
+  </form>
+  <div>
+    <img [src]="'../../assets/' + keytype + '.png'" />
+  </div>
+</div>
