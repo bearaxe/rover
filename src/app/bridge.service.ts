@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
-import { DomSanitizer } from '@angular/platform-browser';
-import { NgForm } from '@angular/forms';
-
-
 
 @Injectable()
 export class BridgeService {
   //RULE OF GOD: NORTH IS MINUS, WEST IS MINUS. EXTREAM (0,0) IS (WEST, NORTH)
   //LEAVE THE ROVER POINTING SOUTH AT START (unless you randomize this later, but for now, SOUTH)
-
 
   basis = 100; // aka, what is a single unit of motion worth?
   width = 9 * this.basis;
@@ -24,16 +19,16 @@ export class BridgeService {
   start = {'x': 0 , 'y': 0};
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
-  moveArr = ['f'];
+  moveArr = ['l'];
   dbLog = [];
   newMoves: string = '';
 
-
   moveSubj = new Subject<String[]>();
-  constructor(private sanitizer: DomSanitizer) { }
+  rotSubj = new Subject<number>();
 
-  safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + this.rotation + "deg)");
-
+  constructor() {
+      this.rotSubj.next(this.rotation);
+  }
 
   play(){
     const move = this.moveArr.pop();
@@ -97,7 +92,7 @@ export class BridgeService {
 
   rotate(rotation){
     this.rotation += rotation;
-    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + this.rotation + "deg)");
+    this.rotSubj.next(this.rotation);
   }
 
   checkMove(destination, key){
@@ -111,15 +106,8 @@ export class BridgeService {
     // return destination;
   }
 
-  addMoves(form: NgForm){
-    const nArr = form.value.newMoves.split(',');
-    for(const each of nArr){
-      this.moveArr.unshift(each)
-    }
-    if(this.isPlaying !== true){
-      this.isPlaying = true;
-      this.play();
-    }
+  addMoves(move){
+    console.log('this is a stub for addMoves(move):', move);
   }
 
   logStatus(lastMove){
@@ -132,7 +120,7 @@ export class BridgeService {
       ));
     console.log('move just executed:', lastMove);
     console.log('currently facing: '
-      + (this.face%2? // if number%2 ==0 0
+      + (this.face%2? // if number%2 = 1 (odd)
           (this.face===1? 'north' : 'south')// then face is one of these
         : (this.face===2? 'east' : 'west') // otherwise, number%2 ==1 and face is one of these
       ));

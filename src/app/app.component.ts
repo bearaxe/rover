@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 import { BridgeService } from './bridge.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,22 +12,26 @@ import { BridgeService } from './bridge.service';
 })
 export class AppComponent implements OnInit{
   title = 'the game';
-
-
-  constructor(private bridge: BridgeService) { }
   width = this.bridge.width;
   height = this.bridge.height;
   basis = this.bridge.basis;
   pos = this.bridge.pos;
+  rotation = 0;
+  safeTransform;
+  // rotSubj = new Subject<number>();
 
-  safeTransform = this.bridge.safeTransform;
+  constructor(private sanitizer: DomSanitizer,
+              private bridge: BridgeService) {
+                this.bridge.rotSubj.subscribe(
+                  (rotation: number) => {
+                    this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + rotation + "deg)");
+                  }
+                )
+              }
 
   ngOnInit(){
-    // console.log('moveArr lenght:', this.moveArr.length);
-    // this.moveArr = this.moveArr.reverse();
     this.bridge.isPlaying = true;
     setTimeout(()=>{this.bridge.play()},1000);
-    // console.log('moves in reverse:', this.dbLog);
   }
 
 }
