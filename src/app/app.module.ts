@@ -11,6 +11,7 @@ import { ControlsComponent } from './controls/controls.component';
 import { BridgeService } from './bridge.service';
 import { KeyHandlerService } from './key-handler.service';
 import { KeyControlsComponent } from './controls/key-controls/key-controls.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { KeyControlsComponent } from './controls/key-controls/key-controls.compo
     GameComponent,
     GameCellComponent,
     ControlsComponent,
-    KeyControlsComponent
+    KeyControlsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
