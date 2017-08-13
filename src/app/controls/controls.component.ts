@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./controls.component.css']
 })
 export class ControlsComponent implements OnInit {
+  adminOpen = false;
 
   constructor(private bridge: BridgeService) { }
 

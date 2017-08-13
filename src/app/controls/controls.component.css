@@ -29,3 +29,22 @@ form#listForm input{
 .btn{
   width: 35px;
 }
+
+.admin-container{
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.admin-container.open {
+  opacity: 1;
+  height: auto;
+}
+
+.admin-link {
+  font-size: 12px;
+  vertical-align: top;
+  cursor: pointer;
+  color: rgb(106, 110, 117);
+}

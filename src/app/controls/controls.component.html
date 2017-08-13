@@ -6,7 +6,7 @@
     <div class="col-xs-12 col-md-6">
       <form id="listForm" #f="ngForm" class="">
         <div class="form-group">
-          <label>Put comma separated moves here and hit go!</label>
+          <label>Put comma separated moves here and hit go! <span class="admin-link" (click)="adminOpen=!adminOpen">[A]</span></label>
           <input type="text" class="form-control"
            name="newMoves" [(ngModel)]="newMoves"
            placeholder="must be in form: l,f,b,r">
@@ -24,7 +24,9 @@
       </div>
     </div>
   </div>
-  <hr>
-  <app-admin></app-admin>
+  <div class="admin-container" [ngClass]="{'open': adminOpen}">
+    <hr>
+    <app-admin></app-admin>
+  </div>
   <div class="clearfix"></div>
 </div>

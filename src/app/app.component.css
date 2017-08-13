@@ -8,7 +8,7 @@ app-rover{
 
 .buffer{
   background: url('../assets/dirt2.jpg');
-  margin: 0 auto 20px;
+  margin: 20px auto;
 }
 
 .bounds{
