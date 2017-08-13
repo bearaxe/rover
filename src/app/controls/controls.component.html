@@ -1,5 +1,5 @@
 <div id="moveForm">
-  <form #f="ngForm">
+  <form #f="ngForm" class="pull-left">
     <div class="form-group">
       <label>Put comma separated moves here and hit go!</label>
       <input type="text" class="form-control"
@@ -8,5 +8,12 @@
     </div>
     <button class="btn btn-success" (click)="addMoves(f)">Go!</button>
   </form>
+  <div class="dpad pull-right">
+    <button id="f" class="btn btn-primary" (click)="addMove('f')">f</button>
+    <button id="l" class="btn btn-primary pull-left" (click)="addMove('l')">l</button>
+    <button id="r" class="btn btn-primary pull-right" (click)="addMove('r')">r</button>
+    <div class="clearfix"></div>
+    <button id="b" class="btn btn-primary" (click)="addMove('b')">b</button>
+  </div>
   <div class="clearfix"></div>
 </div>

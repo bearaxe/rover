@@ -9,14 +9,3 @@ app-rover{
   position: relative;
   margin: 0 auto;
 }
-
-
-form{
-  max-width: 480px;
-  margin: 0 auto 15px;
-}
-form .btn,
-form input{
-  display: block;
-  width: 100%;
-}

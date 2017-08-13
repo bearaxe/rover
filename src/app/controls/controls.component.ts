@@ -19,10 +19,11 @@ export class ControlsComponent implements OnInit {
     for(const each of nArr){
       this.bridge.addMove(each);
     }
-    if(this.bridge.isPlaying !== true){
-      this.bridge.isPlaying = true;
-      this.bridge.play();
-    }
+  }
+
+  addMove(move){
+    console.log('caught a :', move);
+    this.bridge.addMove(move);
   }
 
 }

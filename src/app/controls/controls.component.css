@@ -1,0 +1,24 @@
+#moveForm{
+  max-width: 480px;
+  margin: 0 auto 15px;
+}
+form {
+  width: 70%;
+}
+form .btn,
+form input{
+  display: block;
+  width: 100%;
+}
+
+.dpad{
+  width: 22%;
+  margin: 2% auto;
+}
+#f,#b{
+  display: block;
+  margin: 0 auto;
+}
+.btn{
+  width: 35px;
+}

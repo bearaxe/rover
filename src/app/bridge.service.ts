@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
-@Injectable()
 export class BridgeService {
   //RULE OF GOD: NORTH IS MINUS, WEST IS MINUS. EXTREAM (0,0) IS (WEST, NORTH)
   //LEAVE THE ROVER POINTING SOUTH AT START (unless you randomize this later, but for now, SOUTH)
@@ -23,7 +21,6 @@ export class BridgeService {
   dbLog = [];
   newMoves: string = '';
 
-  moveSubj = new Subject<String[]>();
   rotSubj = new Subject<number>();
 
   constructor() {
@@ -108,6 +105,10 @@ export class BridgeService {
 
   addMove(move){
     this.moveArr.unshift(move);
+    if(this.isPlaying !== true){
+      this.isPlaying = true;
+      this.play();
+    }
   }
 
   logStatus(lastMove){
