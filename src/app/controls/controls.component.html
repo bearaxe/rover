@@ -1,0 +1,12 @@
+<div id="moveForm">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label>Put comma separated moves here and hit go!</label>
+      <input type="text" class="form-control"
+       name="newMoves" [(ngModel)]="newMoves"
+       placeholder="must be in form: l,f,b,r">
+    </div>
+    <button class="btn btn-success" (click)="addMoves(f)">Go!</button>
+  </form>
+  <div class="clearfix"></div>
+</div>

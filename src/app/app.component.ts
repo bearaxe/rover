@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
 
 
   basis = 100; // aka, what is a single unit of motion worth?
-  width = 10 * this.basis;
+  width = 9 * this.basis;
   height = 5 * this.basis;
   isPlaying = false;
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
   start = {'x': 0 , 'y': 0};
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
-  moveArr = ['f', 'l', 'f', 'r', 'b', 'l', 'l', 'b'];
+  moveArr = [];
   dbLog = [];
   newMoves: string = '';
 

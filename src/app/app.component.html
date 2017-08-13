@@ -4,20 +4,9 @@
     It's the rover game!
   </h1>
 </div>
-<div id="moveForm">
-  <form #f="ngForm">
-    <div class="form-group">
-      <label>Put comma separated moves here and hit go!</label>
-      <input type="text" class="form-control"
-       name="newMoves" [(ngModel)]="newMoves"
-       placeholder="must be in form: l,f,b,r">
-    </div>
-    <button class="btn btn-success" (click)="addMoves(f)">Go!</button>
-  </form>
-  <div class="clearfix"></div>
-</div>
-<div class="bounds" [style.width]='width + "px"' [style.height]='height+basis + "px"'>
-<app-rover [rotation]='facedeg' [style.width]='basis + "px"' [style.height]='basis + "px"'
+<app-controls></app-controls>
+<div class="bounds" [style.width]='width+basis + "px"' [style.height]='height+basis + "px"'>
+<app-rover [style.width]='basis + "px"' [style.height]='basis + "px"'
             [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'
              [style.transform]="safeTransform"></app-rover>
 </div>
