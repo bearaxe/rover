@@ -2,8 +2,19 @@
   <div class="col-xs-12">
     <form #admin='ngForm'>
     Options go here
-
-
+    <div class="form-group">
+      <label>Starting point</label>
+      <input type="text" class="form-control"
+       name="position" [(ngModel)]="startPos"
+       placeholder="must be in form: x,y">
+    </div>
+    <div class="form-group">
+      <label>Starting face</label>
+      <input type="text" class="form-control"
+       name="facing" [(ngModel)]="startFace"
+       placeholder="must be a compass letter, like: n, s, e, w">
+    </div>
+    <button class="btn btn-warning" (click)="setData(admin)">Set Data</button>
     </form>
   </div>
 </div>

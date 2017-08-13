@@ -12,6 +12,8 @@ export class BridgeService {
   inputLimit = 3;
   inputCount = 0;
 
+  dirMap = ['w', 'n', 'e', 's'];
+
   counter = 0;
   face = 3; // 1 is n, 2 is e, 3 is s, 0 is w
   rotation = 0; //set this in a different init funciton or something so safeTransform doesn't get borked to heck
@@ -93,6 +95,11 @@ export class BridgeService {
 
   rotate(rotation){
     this.rotation += rotation;
+    this.rotSubj.next(this.rotation);
+  }
+
+  setRotation(rotation){
+    this.rotation = rotation;
     this.rotSubj.next(this.rotation);
   }
 
