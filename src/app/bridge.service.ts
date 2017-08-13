@@ -37,12 +37,11 @@ export class BridgeService {
         this.move(this.face, -1 * this.basis );
         break;
       case 'l':
-        this.face = (this.face - 1 ) % 4;
-        this.face = this.face * (this.face < 0 ? -1 : 1);
+        this.face = (--this.face < 0 ? 3 : this.face);
         this.rotate(-90);
         break;
       case 'r':
-        this.face = (this.face + 1 ) % 4;
+        this.face = ++this.face % 4;
         this.rotate(90);
         break;
       default:
