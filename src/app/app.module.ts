@@ -12,6 +12,7 @@ import { BridgeService } from './bridge.service';
 import { KeyHandlerService } from './key-handler.service';
 import { KeyControlsComponent } from './controls/key-controls/key-controls.component';
 import { AdminComponent } from './admin/admin.component';
+import { BoundsService } from './bounds.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AdminComponent } from './admin/admin.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [GameEngineService, BridgeService, KeyHandlerService],
+  providers: [GameEngineService, BridgeService, KeyHandlerService, BoundsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

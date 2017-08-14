@@ -1,13 +1,18 @@
 import 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { BoundsService } from './bounds.service';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class BridgeService {
   //RULE OF GOD: NORTH IS MINUS, WEST IS MINUS. EXTREAM (0,0) IS (WEST, NORTH)
   //LEAVE THE ROVER POINTING SOUTH AT START (unless you randomize this later, but for now, SOUTH)
 
   basis = 100; // aka, what is a single unit of motion worth?
-  width = 9 * this.basis;
-  height = 5 * this.basis;
+  baseWidth = 9;
+  baseHeight = 5;
+  width = this.baseWidth * this.basis;
+  height = this.baseHeight * this.basis;
   isPlaying = false;
   inputLimit = 3;
   inputCount = 0;
@@ -27,8 +32,22 @@ export class BridgeService {
 
   rotSubj = new Subject<number>();
 
-  constructor() {
-      this.rotSubj.next(this.rotation);
+  constructor(private boundServ: BoundsService) {
+    this.boundServ.basis = this.basis;
+    this.boundServ.baseWidth = this.baseWidth;
+    this.boundServ.baseHeight = this.baseHeight;
+    this.boundServ.width = this.width;
+    this.boundServ.height = this.height;
+    console.log('wtf');
+    this.boundServ.createObsticals();
+    this.loadObsticals();
+    this.rotSubj.next(this.rotation);
+  }
+
+  loadObsticals(){
+    console.log('btw');
+    // if(this.boundServ.obstInit){ setTimeout(()=>{this.loadObsticals()}, 50);}
+    console.log('obsticals generated:',this.boundServ.getObsticals());
   }
 
   play(){
@@ -54,7 +73,7 @@ export class BridgeService {
     this.inputCount = (--this.inputCount >= 0? this.inputCount : 0);
     console.log('inputCount--:', this.inputCount)
 
-    this.logStatus(move);
+    // this.logStatus(move);
     this.dbLog.push(move);
     // move to own function?
     this.oldPos.x = this.pos.x;
@@ -77,16 +96,16 @@ export class BridgeService {
   move(face, motion){
     switch(face){
       case 0: // w
-        this.pos.x = this.checkMove(this.pos.x - motion, 'x');
+        this.pos.x = this.boundServ.checkMove(this.pos, this.pos.x - motion, 'x');
         break;
       case 1: // n
-        this.pos.y = this.checkMove(this.pos.y - motion, 'y');
+        this.pos.y = this.boundServ.checkMove(this.pos, this.pos.y - motion, 'y');
         break;
       case 2: // e
-        this.pos.x = this.checkMove(this.pos.x + motion, 'x');
+        this.pos.x = this.boundServ.checkMove(this.pos, this.pos.x + motion, 'x');
         break;
       case 3: // s
-        this.pos.y = this.checkMove(this.pos.y + motion, 'y');
+        this.pos.y = this.boundServ.checkMove(this.pos, this.pos.y + motion, 'y');
         break;
       default:
         console.log('this direction is impossible. your mod is bad, it gave me: ', face);
@@ -103,16 +122,16 @@ export class BridgeService {
     this.rotSubj.next(this.rotation);
   }
 
-  checkMove(destination, key){
-    if(key === 'x'){
-      console.log("returning: ", (destination <= this.width && destination >= 0? destination : this.pos.x))
-      return (destination <= this.width && destination >= 0? destination : this.pos.x);
-    } else {
-      console.log("returning: ", (destination <= this.height && destination >= 0? destination : this.pos.y))
-      return (destination <= this.height && destination >= 0? destination : this.pos.y);
-    }
-    // return destination;
-  }
+  // checkMove(destination, key){
+  //   if(key === 'x'){
+  //     console.log("returning: ", (destination <= this.width && destination >= 0? destination : this.pos.x))
+  //     return (destination <= this.width && destination >= 0? destination : this.pos.x);
+  //   } else {
+  //     console.log("returning: ", (destination <= this.height && destination >= 0? destination : this.pos.y))
+  //     return (destination <= this.height && destination >= 0? destination : this.pos.y);
+  //   }
+  //   // return destination;
+  // }
 
   // this is a user input funcation and needs to be limited accordingly
   // user should be allowed up to 3 seconds of built up movement
