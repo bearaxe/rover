@@ -40,16 +40,9 @@ export class BridgeService {
     this.boundServ.baseHeight = this.baseHeight;
     this.boundServ.width = this.width;
     this.boundServ.height = this.height;
-    console.log('wtf');
     this.boundServ.createObsticals();
     this.obstList = this.boundServ.getObsticals();
     this.rotSubj.next(this.rotation);
-  }
-
-  loadObsticals(){
-    console.log('btw');
-    // if(this.boundServ.obstInit){ setTimeout(()=>{this.loadObsticals()}, 50);}
-    console.log('obsticals generated:',this.boundServ.getObsticals());
   }
 
   play(){
@@ -73,7 +66,6 @@ export class BridgeService {
         console.log('your array value ' + move + 'is invalid');
     }
     this.inputCount = (--this.inputCount >= 0? this.inputCount : 0);
-    console.log('inputCount--:', this.inputCount)
 
     // this.logStatus(move);
     this.dbLog.push(move);
@@ -123,17 +115,6 @@ export class BridgeService {
     this.rotation = rotation;
     this.rotSubj.next(this.rotation);
   }
-
-  // checkMove(destination, key){
-  //   if(key === 'x'){
-  //     console.log("returning: ", (destination <= this.width && destination >= 0? destination : this.pos.x))
-  //     return (destination <= this.width && destination >= 0? destination : this.pos.x);
-  //   } else {
-  //     console.log("returning: ", (destination <= this.height && destination >= 0? destination : this.pos.y))
-  //     return (destination <= this.height && destination >= 0? destination : this.pos.y);
-  //   }
-  //   // return destination;
-  // }
 
   // this is a user input funcation and needs to be limited accordingly
   // user should be allowed up to 3 seconds of built up movement

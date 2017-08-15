@@ -18,7 +18,6 @@ export class KeyHandlerService {
       console.log('event data:', data.key);
       const key = data.key;
 
-      console.log('test:', this.up[this.set] === key)
       if(this.up[this.set] === key){
         this.bridge.addInput('f');
       } else if(this.left[this.set] === key){

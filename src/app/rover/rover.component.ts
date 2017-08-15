@@ -6,30 +6,11 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./rover.component.css']
 })
 export class RoverComponent implements OnInit, OnChanges {
-  @Input() size;
-  @Input() x;
-  @Input() y;
-  @Input() rotation;
-
-
-
 
   ngOnChanges() {
-    console.log('ayy found somethin')
   }
 
   ngOnInit() {
-  }
-
-  // Forward, backward are move functions
-  // Left, Right are turn motions
-  move(list: string[]){
-
-
-  }
-
-  explode(){
-
   }
 
 }
