@@ -20,6 +20,7 @@ export class AppComponent implements OnInit{
   offset = this.basis /8;
   rotation = 0;
   obstList = this.bridge.obstList;
+  moveList: string[] = ['Move List!', 'It\'s pretty cool'];
   safeTransform;
   // rotSubj = new Subject<number>();
 
@@ -29,6 +30,13 @@ export class AppComponent implements OnInit{
                 this.bridge.rotSubj.subscribe(
                   (rotation: number) => {
                     this.safeTransform = this.sanitizer.bypassSecurityTrustStyle("rotate( " + rotation + "deg)");
+                  }
+                )
+
+                this.bridge.moveSubj.subscribe(
+                  (newList: string[]) => {
+                    console.log('found a newlist:', newList)
+                    this.moveList = newList;
                   }
                 )
               }

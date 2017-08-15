@@ -33,8 +33,10 @@ export class BridgeService {
   newMoves: string = '';
 
   rotSubj = new Subject<number>();
+  moveSubj = new Subject<String[]>();
 
   constructor(private boundServ: BoundsService) {
+    this.moveSubj.next(this.moveArr);
     this.boundServ.basis = this.basis;
     this.boundServ.baseWidth = this.baseWidth;
     this.boundServ.baseHeight = this.baseHeight;
@@ -47,6 +49,7 @@ export class BridgeService {
 
   play(){
     const move = this.moveArr.pop();
+    // this.moveSubj.next(this.moveArr);
     switch(move){
       case 'f':
         this.move(this.face, 1 * this.basis );
@@ -124,6 +127,8 @@ export class BridgeService {
       this.inputCount++;
       console.log('inputCount++:', this.inputCount)
       this.moveArr.unshift(move);
+      console.log('thismovearr', this.moveArr)
+      this.moveSubj.next(this.moveArr);
       if(this.isPlaying !== true){
         this.isPlaying = true;
         this.play();
@@ -133,6 +138,8 @@ export class BridgeService {
 
   addMove(move){
     this.moveArr.unshift(move);
+    console.log('thismovearr', this.moveArr)
+    this.moveSubj.next(this.moveArr);
     if(this.isPlaying !== true){
       this.isPlaying = true;
       this.play();
