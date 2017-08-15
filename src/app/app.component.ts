@@ -19,6 +19,7 @@ export class AppComponent implements OnInit{
   pos = this.bridge.pos;
   offset = this.basis /8;
   rotation = 0;
+  obstList = this.bridge.obstList;
   safeTransform;
   // rotSubj = new Subject<number>();
 

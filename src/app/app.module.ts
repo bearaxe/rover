@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RoverComponent } from './rover/rover.component';
-import { GameComponent } from './game/game.component';
-import { GameEngineService } from './game/game-engine.service';
-import { GameCellComponent } from './game/game-cell/game-cell.component';
 import { ControlsComponent } from './controls/controls.component';
 import { BridgeService } from './bridge.service';
 import { KeyHandlerService } from './key-handler.service';
@@ -18,8 +15,6 @@ import { BoundsService } from './bounds.service';
   declarations: [
     AppComponent,
     RoverComponent,
-    GameComponent,
-    GameCellComponent,
     ControlsComponent,
     KeyControlsComponent,
     AdminComponent
@@ -28,7 +23,7 @@ import { BoundsService } from './bounds.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [GameEngineService, BridgeService, KeyHandlerService, BoundsService],
+  providers: [BridgeService, KeyHandlerService, BoundsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

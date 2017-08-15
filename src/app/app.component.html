@@ -12,6 +12,11 @@
                  [style.left]='pos.x + "px"' [style.top]='pos.y + "px"'
                  [style.transform]="safeTransform">
       </app-rover>
+      <div *ngFor="let item of obstList">
+        <div class="obstical"
+              [style.width]='basis + "px"' [style.height]='basis + "px"'
+              [style.left]='item.x + "px"' [style.top]='item.y + "px"'></div>
+      </div>
       <div class="dirt-mask"></div>
     </div>
   </div>

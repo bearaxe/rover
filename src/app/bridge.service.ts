@@ -27,6 +27,8 @@ export class BridgeService {
   pos = this.start;
   oldPos = {'x': 0, 'y': 0};
   moveArr = ['l'];
+  // obstArr = [];
+  obstList = {};
   dbLog = [];
   newMoves: string = '';
 
@@ -40,7 +42,7 @@ export class BridgeService {
     this.boundServ.height = this.height;
     console.log('wtf');
     this.boundServ.createObsticals();
-    this.loadObsticals();
+    this.obstList = this.boundServ.getObsticals();
     this.rotSubj.next(this.rotation);
   }
 

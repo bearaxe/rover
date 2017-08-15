@@ -18,6 +18,12 @@ app-rover{
 
 }
 
+.obstical {
+  position: absolute;
+  background: url('../assets/base.png');
+  z-index: 2;
+}
+
 .dirt-mask{
   position: absolute;
   width: 100%;
